@@ -1,2 +1,4 @@
 # lpc2023_2-pong
-# Aglison Balieiro da Silva, Oziel Bezerra De Lima, Felipe Alves Lopes
+# abds.snf23@uea.edu.br - Aglison Balieiro da Silva
+# obdl.snf23@uea.edu.br - Oziel Bezerra De Lima
+# fal.snf23@uea.edu.br - Felipe Alves Lopes
