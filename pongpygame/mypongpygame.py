@@ -18,7 +18,7 @@ mid = (width / 2) - ((40 + 50) / 2)
 p_score = 0
 b_score = 0
 pygame.init()
-game_font = pygame.font.Font("font.ttf", 100)
+game_font = pygame.font.Font("assets/PressStart2P.ttf", 65)
 
 # tamanho da tela
 size = (width, height)
@@ -57,7 +57,7 @@ while True:
 
     pygame.draw.rect(screen, (255, 255, 255), player)
     pygame.draw.rect(screen, (255, 255, 255), bot)
-    pygame.draw.rect(screen, (255, 255, 255), ball)
+    pygame.draw.ellipse(screen, (255, 255, 255), ball)
     pygame.draw.aaline(screen, (255, 255, 255), (width / 2, 0), (width / 2, height))
     player_text = game_font.render(f"{p_score}", False, (255, 255, 255))
     screen.blit(player_text, (740, 50))
