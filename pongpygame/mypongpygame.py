@@ -40,26 +40,11 @@ def ball_reset():
     player.center = (width - 5, height / 2)
     dir = random.choice(direction)
     ang = random.choice(angle)
-    if dir == 0:
-        if ang == 0:
-            bally, ballx = -10, 5
-        if ang == 1:
-            bally, ballx = -10, 5
-        if ang == 2:
-            bally, ballx = -10, 10
-    if dir == 1:
-        if ang == 0:
-            bally, ballx = 10, 5
-        if ang == 1:
-            bally, ballx = 10, 5
-        if ang == 2:
-            bally, ballx = 10, 10
 
 
 # texts and measures
 width = 1280
 height = 720
-mid = (width / 2) - ((40 + 50) / 2)
 p_score = 0
 b_score = 0
 pygame.init()
@@ -113,14 +98,14 @@ while True:
                     ang = random.choice(angle)
                     if dir == 0:
                         if ang == 0:
-                            bally, ballx = -6, 8
+                            bally, ballx = -10, 8
                         if ang == 1:
                             bally, ballx = -7, 7
                         if ang == 2:
                             bally, ballx = -8, 6
                     if dir == 1:
                         if ang == 0:
-                            bally, ballx = 6, 8
+                            bally, ballx = 10, 8
                         if ang == 1:
                             bally, ballx = 7, 7
                         if ang == 2:
@@ -147,7 +132,7 @@ while True:
     player_animation()
     ball_movement()
 
-    if ball.x < width / 2:
+    if ball.x < width / 1.7:
         if bot.top <= ball.y:
             bot.top += b_speed
         if bot.bottom >= ball.y:
@@ -158,7 +143,6 @@ while True:
     if bot.bottom >= height:
         bot.bottom = height
 
-
     # visible
     screen.fill(bg)
     pygame.draw.rect(screen, (255, 255, 255), player)
@@ -166,8 +150,8 @@ while True:
     pygame.draw.rect(screen, (255, 255, 255), ball)
     pygame.draw.aaline(screen, (255, 255, 255), (width / 2, 0), (width / 2, height))
     player_text = game_font.render(f"{p_score}", False, (255, 255, 255))
-    screen.blit(player_text, (width/2 + 250, 50))
+    screen.blit(player_text, (width / 2 + 250, 50))
     bot_text = game_font.render(f"{b_score}", False, (255, 255, 255))
     screen.blit(bot_text, (270, 50))
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(75)
