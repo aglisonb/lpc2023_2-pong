@@ -2,6 +2,7 @@ import pygame
 import sys
 import time
 
+
 def ball_movement():
     global ballx, bally, b_score, p_score, still_playing
     ball.x += ballx * balldirect.x
