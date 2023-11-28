@@ -9,14 +9,18 @@ def ball_movement():
     ball.y += bally
     if ball.top <= 0 or ball.bottom >= height:
         bally *= -1
+        bounce_sound_effect.play()
     if ball.right >= width or ball.left <= 0:
         if ball.right >= width:
             b_score += 1
+            scoring_sound_effect.play()
         if ball.left <= 0:
             p_score += 1
+            scoring_sound_effect.play()
         ball_reset()
     if ball.colliderect(player) or ball.colliderect(bot):
         ballx *= -1
+        bounce_sound_effect.play()
 
 
 def player_animation():
@@ -34,6 +38,22 @@ def ball_reset():
     bally *= 0
     bot.center = (10, height / 2)
     player.center = (width - 5, height / 2)
+    dir = random.choice(direction)
+    ang = random.choice(angle)
+    if dir == 0:
+        if ang == 0:
+            bally, ballx = -10, 5
+        if ang == 1:
+            bally, ballx = -10, 5
+        if ang == 2:
+            bally, ballx = -10, 10
+    if dir == 1:
+        if ang == 0:
+            bally, ballx = 10, 5
+        if ang == 1:
+            bally, ballx = 10, 5
+        if ang == 2:
+            bally, ballx = 10, 10
 
 
 # texts and measures
@@ -43,7 +63,15 @@ mid = (width / 2) - ((40 + 50) / 2)
 p_score = 0
 b_score = 0
 pygame.init()
-game_font = pygame.font.Font("font.ttf", 100)
+game_font = pygame.font.Font("assets/PressStart2P.ttf", 100)
+
+# angles creatives, top and bottom []
+direction = [0, 1]
+angle = [0, 1, 2]
+
+# songs
+bounce_sound_effect = pygame.mixer.Sound('assets/bounce.wav')
+scoring_sound_effect = pygame.mixer.Sound('assets/258020__kodack__arcade-bleep-sound.wav')
 
 # size screen
 size = (width, height)
@@ -81,12 +109,40 @@ while True:
         if ballx == 0 or bally == 0:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
-                    ballx = 7 * random.choice((1, -1))
-                    bally = 7 * random.choice((1, -1))
+                    dir = random.choice(direction)
+                    ang = random.choice(angle)
+                    if dir == 0:
+                        if ang == 0:
+                            bally, ballx = -7, 5
+                        if ang == 1:
+                            bally, ballx = -7, 5
+                        if ang == 2:
+                            bally, ballx = -7, 5
+                    if dir == 1:
+                        if ang == 0:
+                            bally, ballx = 10, 5
+                        if ang == 1:
+                            bally, ballx = 10, 5
+                        if ang == 2:
+                            bally, ballx = 10, 10
 
                 if event.key == pygame.K_UP:
-                    ballx = 7 * random.choice((1, -1))
-                    bally = 7 * random.choice((1, -1))
+                    dir = random.choice(direction)
+                    ang = random.choice(angle)
+                    if dir == 0:
+                        if ang == 0:
+                            bally, ballx = -10, 5
+                        if ang == 1:
+                            bally, ballx = -10, 5
+                        if ang == 2:
+                            bally, ballx = -10, 5
+                    if dir == 1:
+                        if ang == 0:
+                            bally, ballx = 10, 5
+                        if ang == 1:
+                            bally, ballx = 10, 5
+                        if ang == 2:
+                            bally, ballx = 10, 5
 
     player_animation()
     ball_movement()
