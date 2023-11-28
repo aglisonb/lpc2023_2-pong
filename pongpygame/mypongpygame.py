@@ -79,6 +79,7 @@ player = pygame.Rect(width - 20, height / 2 - 100, pallet_width, pallet_size)
 bot = pygame.Rect(10, height / 2 - 100, pallet_width, pallet_size)
 ball = pygame.Rect(width / 2 - 15, height / 2 - 15, ball_size, ball_size)
 
+# ball and paddle speed
 ballx = 0
 bally = 0
 balldirect = pygame.math.Vector2(1, 0)
