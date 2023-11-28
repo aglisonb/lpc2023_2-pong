@@ -50,7 +50,7 @@ b_score = 0
 pygame.init()
 game_font = pygame.font.Font("assets/PressStart2P.ttf", 100)
 
-# angles creatives, top and bottom []
+# angles creatives, top and bottom values []
 direction = [0, 1]
 angle = [0, 1, 2]
 
