@@ -5,8 +5,8 @@ import random
 
 def ball_movement():
     global ballx, bally, b_score, p_score
-    ball.x += ballx
-    ball.y += bally
+    ball.x += ballx * balldirect.x
+    ball.y += bally * balldirect.y
     if ball.top <= 0 or ball.bottom >= height:
         bally *= -1
         bounce_sound_effect.play()
@@ -18,8 +18,13 @@ def ball_movement():
             p_score += 1
             scoring_sound_effect.play()
         ball_reset()
-    if ball.colliderect(player) or ball.colliderect(bot):
-        ballx *= -1
+    if ball.colliderect(player):
+        balldirect.x *= -1
+        balldirect.y = (player.centery - ball.y) / (180 / 2)
+        bounce_sound_effect.play()
+    if ball.colliderect(bot):
+        balldirect.x *= -1
+        balldirect.y = (bot.centery - ball.y) / (180 / 2)
         bounce_sound_effect.play()
 
 
@@ -36,6 +41,8 @@ def ball_reset():
     ball.center = (width / 2, height / 2)
     ballx *= 0
     bally *= 0
+    balldirect.x = 1
+    balldirect.y = 0
     bot.center = (10, height / 2)
     player.center = (width - 5, height / 2)
     dir = random.choice(direction)
@@ -71,6 +78,7 @@ ball = pygame.Rect(width / 2 - 15, height / 2 - 15, 30, 30)
 
 ballx = 0
 bally = 0
+balldirect = pygame.math.Vector2(1, 0)
 p_speed = 0
 b_speed = 10
 a = 10
