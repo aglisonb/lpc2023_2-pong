@@ -4,7 +4,6 @@ import sys
 
 def ball_movement():
     global ballx, bally, b_score, p_score
-
     ball.x += ballx * balldirect.x
     ball.y += bally * balldirect.y
     if ball.top <= 0 or ball.bottom >= height:
