@@ -57,8 +57,8 @@ def ball_reset():
 
 
 # texts and measures
-width = 1024
-height = 700
+width = 1280
+height = 720
 mid = (width / 2) - ((40 + 50) / 2)
 p_score = 0
 b_score = 0
@@ -80,7 +80,7 @@ clock = pygame.time.Clock()
 bg = (0, 0, 0)
 
 # draw
-player = pygame.Rect(width - 20, height / 2 - 100, 10, 140)
+player = pygame.Rect(width - 20, height / 2 - 100, 10, 180)
 bot = pygame.Rect(10, height / 2 - 100, 10, 180)
 ball = pygame.Rect(width / 2 - 15, height / 2 - 15, 30, 30)
 
@@ -113,36 +113,36 @@ while True:
                     ang = random.choice(angle)
                     if dir == 0:
                         if ang == 0:
-                            bally, ballx = -7, 5
+                            bally, ballx = -6, 8
                         if ang == 1:
-                            bally, ballx = -7, 5
+                            bally, ballx = -7, 7
                         if ang == 2:
-                            bally, ballx = -7, 5
+                            bally, ballx = -8, 6
                     if dir == 1:
                         if ang == 0:
-                            bally, ballx = 10, 5
+                            bally, ballx = 6, 8
                         if ang == 1:
-                            bally, ballx = 10, 5
+                            bally, ballx = 7, 7
                         if ang == 2:
-                            bally, ballx = 10, 10
+                            bally, ballx = 8, 6
 
                 if event.key == pygame.K_UP:
                     dir = random.choice(direction)
                     ang = random.choice(angle)
                     if dir == 0:
                         if ang == 0:
-                            bally, ballx = -10, 5
+                            bally, ballx = -6, 8
                         if ang == 1:
-                            bally, ballx = -10, 5
+                            bally, ballx = -7, 7
                         if ang == 2:
-                            bally, ballx = -10, 5
+                            bally, ballx = -8, 6
                     if dir == 1:
                         if ang == 0:
-                            bally, ballx = 10, 5
+                            bally, ballx = 6, 8
                         if ang == 1:
-                            bally, ballx = 10, 5
+                            bally, ballx = 7, 7
                         if ang == 2:
-                            bally, ballx = 10, 5
+                            bally, ballx = 8, 6
 
     player_animation()
     ball_movement()
@@ -166,8 +166,8 @@ while True:
     pygame.draw.rect(screen, (255, 255, 255), ball)
     pygame.draw.aaline(screen, (255, 255, 255), (width / 2, 0), (width / 2, height))
     player_text = game_font.render(f"{p_score}", False, (255, 255, 255))
-    screen.blit(player_text, (740, 50))
+    screen.blit(player_text, (width/2 + 250, 50))
     bot_text = game_font.render(f"{b_score}", False, (255, 255, 255))
     screen.blit(bot_text, (270, 50))
     pygame.display.flip()
-    clock.tick(75)
+    clock.tick(60)
