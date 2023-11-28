@@ -20,11 +20,11 @@ def ball_movement():
         ball_reset()
     if ball.colliderect(player):
         balldirect.x *= -1
-        balldirect.y = (player.centery - ball.y) / (180 / 2)
+        balldirect.y = ((player.centery - ball.y) / (180 / 2)) * -1
         bounce_sound_effect.play()
     if ball.colliderect(bot):
         balldirect.x *= -1
-        balldirect.y = (bot.centery - ball.y) / (180 / 2)
+        balldirect.y = ((bot.centery - ball.y) / (180 / 2)) * -1
         bounce_sound_effect.play()
 
 
@@ -45,8 +45,6 @@ def ball_reset():
     balldirect.y = 0
     bot.center = (10, height / 2)
     player.center = (width - 5, height / 2)
-    dir = random.choice(direction)
-    ang = random.choice(angle)
 
 
 # texts and measures
@@ -56,10 +54,6 @@ p_score = 0
 b_score = 0
 pygame.init()
 game_font = pygame.font.Font("assets/PressStart2P.ttf", 100)
-
-# angles creatives, top and bottom values []
-direction = [0, 1]
-angle = [0, 1, 2]
 
 # songs
 bounce_sound_effect = pygame.mixer.Sound('assets/bounce.wav')
@@ -102,40 +96,9 @@ while True:
         if ballx == 0 or bally == 0:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
-                    dir = random.choice(direction)
-                    ang = random.choice(angle)
-                    if dir == 0:
-                        if ang == 0:
-                            bally, ballx = -10, 8
-                        if ang == 1:
-                            bally, ballx = -7, 7
-                        if ang == 2:
-                            bally, ballx = -8, 6
-                    if dir == 1:
-                        if ang == 0:
-                            bally, ballx = 10, 8
-                        if ang == 1:
-                            bally, ballx = 7, 7
-                        if ang == 2:
-                            bally, ballx = 8, 6
-
+                    ballx, bally = 10, 10
                 if event.key == pygame.K_UP:
-                    dir = random.choice(direction)
-                    ang = random.choice(angle)
-                    if dir == 0:
-                        if ang == 0:
-                            bally, ballx = -6, 8
-                        if ang == 1:
-                            bally, ballx = -7, 7
-                        if ang == 2:
-                            bally, ballx = -8, 6
-                    if dir == 1:
-                        if ang == 0:
-                            bally, ballx = 6, 8
-                        if ang == 1:
-                            bally, ballx = 7, 7
-                        if ang == 2:
-                            bally, ballx = 8, 6
+                    ballx, bally = 10, 10
 
     player_animation()
     ball_movement()
