@@ -24,10 +24,14 @@ def ball_movement():
         balldirect.x *= -1
         balldirect.y = ((player.centery - ball.y) / (pallet_size / 2)) * -1
         bounce_sound_effect.play()
+        ballx += 0.25
+        bally += 0.25
     if ball.colliderect(bot):
         balldirect.x *= -1
         balldirect.y = ((bot.centery - ball.y) / (pallet_size / 2)) * -1
         bounce_sound_effect.play()
+        ballx += 0.25
+        bally += 0.25
 
 
 def player_animation():
@@ -106,7 +110,7 @@ while still_playing:
     player_animation()
     ball_movement()
 
-    if ball.x < width / 1.5:
+    if ball.x < width / 2:
         if bot.top <= ball.y:
             bot.top += b_speed
         if bot.bottom >= ball.y:
