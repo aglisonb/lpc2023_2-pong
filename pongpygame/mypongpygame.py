@@ -1,10 +1,10 @@
 import pygame
 import sys
-import random
 
 
 def ball_movement():
     global ballx, bally, b_score, p_score
+
     ball.x += ballx * balldirect.x
     ball.y += bally * balldirect.y
     if ball.top <= 0 or ball.bottom >= height:
@@ -20,11 +20,11 @@ def ball_movement():
         ball_reset()
     if ball.colliderect(player):
         balldirect.x *= -1
-        balldirect.y = ((player.centery - ball.y) / (180 / 2)) * -1
+        balldirect.y = ((player.centery - ball.y) / (pallet_size / 2)) * -1
         bounce_sound_effect.play()
     if ball.colliderect(bot):
         balldirect.x *= -1
-        balldirect.y = ((bot.centery - ball.y) / (180 / 2)) * -1
+        balldirect.y = ((bot.centery - ball.y) / (pallet_size / 2)) * -1
         bounce_sound_effect.play()
 
 
@@ -50,6 +50,9 @@ def ball_reset():
 # texts and measures
 width = 1280
 height = 720
+pallet_size = 180
+pallet_width = 10
+ball_size = 30
 p_score = 0
 b_score = 0
 pygame.init()
@@ -66,9 +69,9 @@ clock = pygame.time.Clock()
 bg = (0, 0, 0)
 
 # draw
-player = pygame.Rect(width - 20, height / 2 - 100, 10, 180)
-bot = pygame.Rect(10, height / 2 - 100, 10, 180)
-ball = pygame.Rect(width / 2 - 15, height / 2 - 15, 30, 30)
+player = pygame.Rect(width - 20, height / 2 - 100, pallet_width, pallet_size)
+bot = pygame.Rect(10, height / 2 - 100, pallet_width, pallet_size)
+ball = pygame.Rect(width / 2 - 15, height / 2 - 15, ball_size, ball_size)
 
 ballx = 0
 bally = 0
@@ -85,7 +88,6 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_DOWN:
                 p_speed += a
-
             if event.key == pygame.K_UP:
                 p_speed -= a
         if event.type == pygame.KEYUP:
@@ -95,15 +97,13 @@ while True:
                 p_speed += a
         if ballx == 0 or bally == 0:
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_DOWN:
-                    ballx, bally = 10, 10
-                if event.key == pygame.K_UP:
+                if event.key == pygame.K_DOWN or event.key == pygame.K_UP:
                     ballx, bally = 10, 10
 
     player_animation()
     ball_movement()
 
-    if ball.x < width / 1.7:
+    if ball.x < width / 1.5:
         if bot.top <= ball.y:
             bot.top += b_speed
         if bot.bottom >= ball.y:
